@@ -1,0 +1,236 @@
+@charset "UTF-8";
+
+/* import é fonte do google, com código deles, com nome fornecido por eles. E a font-face é a fonte baixada no computador. No font-family dessa eu escolho o nome. */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@font-face {
+    font-family: 'Android';
+    src: url(../fontes/idroid.otf) format('opentype');
+}
+
+/* É a raiz do doc. O que for incluído aqui será aplicado para todo o projeto. Os nomes das variáres, que sempre iniciam com --, é escolha sua.  */
+:root {
+    --cor0: #b2fac1;
+    --cor1: #4EF46F;
+    --cor2: #05F234;
+    --cor3: #04BF29;
+    --cor4: #027319;
+    --cor5: #28422d;
+
+    /* É importante colocar uma fonte padrão caso as outras não deem certo. */
+    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+    --fonte-destaque: 'Bebas Neue', cursive;
+    --fonte-android: 'Android', cursive;
+
+}
+
+/* Margin e padding zerados no seletor glogal para ficar mais fácil a configuração */
+/* Sem as configs de responsividade a tela está em 100% de largura. Tudo quebra quando pequeno e os parágrafos ficam muito largos em telas maiores. O ideal é 1000 a 1200 px de largura. Para config usaremos a max-height e min-height */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: var(--cor0);
+    font-family: var(--fonte-padrao);
+}
+
+a.externo::after {
+    content: '\00A0\1F517';
+}
+
+header {
+    background-color: var(--cor4);
+    /* min-height: para aumentara a altura do header */
+    min-height: 150px;
+    text-align: center;
+    /* aumentar o espaço entre topo e h1. o margin-top no h1 não funciona bem */
+    padding-top: 40px;
+    background-image: linear-gradient(to bottom, var(--cor3), var(--cor5));
+}
+
+header>h1 {
+    color: white;
+    font-family: var(--fonte-destaque);
+    margin-bottom: 20px;
+    font-size: 3em;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.37);
+    font-weight: normal;
+}
+
+header>p {
+    color: white;
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    /* para colocar o p centralizado e +- contido na larguda do h1. ao colocar 500px ele vira um bloco e precisa do margin auto para centralizar */
+    max-width: 500px;
+    margin: auto;
+    /* para afastar da borda quando estiver muito pequeno */
+    padding-right: 10px;
+    padding-left: 10px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.37);
+}
+
+nav {
+    /* background-color: var(--cor5); */
+    /* box-shadow: 0px 7px 9px rgba(0, 0, 0, 0.349); */
+    /* para aumentar o espaço em todas as direções, ficar mais largo */
+    padding: 10px;
+
+}
+
+nav>a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    /* transition-duration: .5s; para ter um efeito quando passa o mouse. O .5 significa 0.5segundos*/
+}
+
+nav>a:hover {
+    background-color: var(--cor5);
+    color: var(--cor0);
+}
+
+main {
+    background-color: white;
+    /* min e max width para resposividade do conteúdo */
+    min-width: 300px;
+    max-width: 800px;
+    margin: auto;
+    /* bottom para descolar o main do footer */
+    margin-bottom: 30px;
+    /* padding para afastar todo o conteúdo da margem branca, estavam colados */
+    padding: 20px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.329);
+    /* arredondamento dos cantos de forma individual */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+main h1 {
+    color: var(--cor5);
+    font-family: var(--fonte-android);
+    font-weight: normal;
+    font-size: 1.7em;
+}
+
+main h2 {
+    font-family: var(--fonte-android);
+    color: var(--cor5);
+    font-size: 1.3em;
+    background-image: linear-gradient(to right, var(--cor1), transparent);
+    /* esse para dar um pequeno espaço da borda gradiente e a palavra */
+    text-indent: 8px;
+    font-weight: normal;
+}
+
+main p {
+    /* se colocar main > p ele não irá funcionar pois os p's estão dentro do article */
+    margin: 15px 0px;
+    text-align: justify;
+    text-indent: 30px;
+    line-height: 2em;
+}
+
+main img {
+    /* junto com o picture faz com que as imagens sejam responsivas, vão se adaptando ao tamanho da tela */
+    width: 100%;
+}
+
+main img.pequena {
+    /* .pequena é a class da img. isso é para diminuir a imagem, que estava muito grande e deformada */
+    max-width: 300px;
+    /* img por padrão não é um bloco, por isso a necessidade do display block junto com a margin */
+    display: block;
+    margin: auto;
+}
+
+main strong {
+    color: var(--cor5);
+    font-weight: bold;
+}
+
+main a {
+    background-color: var(--cor0);
+    color: black;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+    background-color: var(--cor5);
+    color: white;
+}
+
+/* se lê: tudo que é div da classe video */
+div.video {
+    background-color: var(--cor5);
+    /* para esse back colar no back do main, é necessário 20px, pois tem 10 do main e 10 do article */
+    margin: 0px -20px 30px -20px;
+    /* para afastar o video do back acima */
+    padding: 20px;
+    /* as possitions deixaram o vídeo desconfigurado, na frente do back. Esse padding-bottom é para consertar isso. Use o devtools para encontrar o número correto */
+    padding-bottom: 59%;
+    position: relative;
+}
+
+div.video>iframe {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    /* não é 100% para ter um pedaço do verde como moldura */
+    width: 90%;
+    height: 90%;
+}
+
+aside {
+    background-color: var(--cor0);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.301);
+}
+
+aside h3 {
+    background-color: var(--cor5);
+    color: white;
+    padding: 5px;
+    /* para que esse back encoste no back do aside, preciso que o marging cresca para fora, então coloco valor negativo */
+    margin: -10px -10px 0px -10px;
+    /* esse margin de cima anula o arredondamento do aside, para isso: */
+    border-radius: 10px 10px 0px 0px;
+
+
+}
+
+aside>ul {
+    /* faz com que as marcações da lista fiquem dentro do box, pois o padrão são as marcações por fora */
+    list-style-position: inside;
+    /* para dividir a lista em mais colunas */
+    columns: 2;
+    /* para alterar o estilo da marcação de uma forma diferente, que talvez não funcione em todos os navegadores. A \ (contra barra) é obrigatória antes de todo código. 2714 é o código do check e 00A0 ou 0020 é o espaço (nbsp) */
+    list-style-type: '\2714\00A0\00A0';
+}
+
+footer {
+    background-color: var(--cor5);
+    color: white;
+    text-align: center;
+    font-size: .9em;
+    padding: 5px;
+}
+
+footer a {
+    color: white;
+    font-weight: bold;
+    /* text-decoration: none; */
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: black;
+}
